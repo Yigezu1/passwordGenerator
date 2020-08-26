@@ -115,7 +115,13 @@ function writePassword() {
       "Do you want your passowrd to include special characters?"
     );
     if (lcase || ucase || numeric || specialCharacter) {
-      var password = generatePassword(pLen ,lcase, ucase, numeric, specialCharacter);
+      var password = generatePassword(
+        pLen,
+        lcase,
+        ucase,
+        numeric,
+        specialCharacter
+      );
       var passwordText = document.querySelector("#password");
 
       passwordText.value = password;
@@ -137,23 +143,23 @@ generateBtn.addEventListener("click", writePassword);
 // generatePassword function
 function generatePassword(plen, lcase, ucase, numeric, specialCharacter) {
   var joinedArray = [];
-  if(lcase){
+  if (lcase) {
     joinedArray = joinedArray.concat(lowercaseL);
   }
-  if(ucase){
+  if (ucase) {
     joinedArray = joinedArray.concat(uppercaseL);
   }
-  if(numeric){
+  if (numeric) {
     joinedArray = joinedArray.concat(numerics);
   }
-  if(specialCharacter){
+  if (specialCharacter) {
     joinedArray = joinedArray.concat(specialChar);
-  } 
-  var joinedArrayLen = joinedArray.length; 
-var pass = [];
-for(i=0; i < plen; i++){
- pass[i] = joinedArray[Math.floor(Math.random()*joinedArrayLen)]; 
-}
-pass = pass.join('');
-return pass;
+  }
+  var joinedArrayLen = joinedArray.length;
+  var pass = [];
+  for (i = 0; i < plen; i++) {
+    pass[i] = joinedArray[Math.floor(Math.random() * joinedArrayLen)];
+  }
+  pass = pass.join("");
+  return pass;
 }
