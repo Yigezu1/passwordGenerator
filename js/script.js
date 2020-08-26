@@ -173,10 +173,35 @@ function generatePassword(plen, lcase, ucase, numeric, specialCharacter) {
   var joinedArrayLen = joinedArray.length;
   // pass is an array that contains the actual password characters.
   var pass = [];
+  actualPasswordgenerator();
   // The for loop that generates the password characters and populate to pass array
+  function actualPasswordgenerator(){
   for (i = 0; i < plen; i++) {
     pass[i] = joinedArray[Math.floor(Math.random() * joinedArrayLen)];
   }
+  // Check if password criteria is met or not
+  if(lcase){
+    if(!(pass.some(e => lowercaseL.indexOf(e) >= 0))){
+      actualPasswordgenerator();
+    }
+  }
+  if(ucase){
+    if(!(pass.some(e => uppercaseL.indexOf(e) >= 0))){
+      actualPasswordgenerator();
+    }
+  }
+  if(numeric){
+    if(!(pass.some(e => numerics.indexOf(e) >= 0))){
+      actualPasswordgenerator();
+    }
+  }
+  if(specialCharacter){
+    if(!(pass.some(e => specialChar.indexOf(e) >= 0))){
+      actualPasswordgenerator();
+    }
+  }
+}
+  
   // Joins the password characters as a string and return to the caller.
   pass = pass.join("");
   return pass;
