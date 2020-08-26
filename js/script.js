@@ -103,7 +103,9 @@ function writePassword() {
   var pLen = parseInt(
     prompt("Please send valid lenght btween 8 and 128 for your password lenght")
   );
+  // Checks the user input is a valid password lenght or not
   if (!isNaN(pLen) && pLen >= 8 && pLen <= 128) {
+    // Series of confirm function which gives the user to decide which password character types to include.
     var lcase = confirm(
       "Do you want your password to include lowercase letters?"
     );
@@ -114,6 +116,9 @@ function writePassword() {
     var specialCharacter = confirm(
       "Do you want your passowrd to include special characters?"
     );
+    /* Checks the response of the user for password character types. 
+    The user should at least choose one. If the user at leaset choose one then the 
+    generatepassowrd function is called to generate the password. */
     if (lcase || ucase || numeric || specialCharacter) {
       var password = generatePassword(
         pLen,
@@ -126,14 +131,22 @@ function writePassword() {
 
       passwordText.value = password;
     } else {
+      /* If the user doesn't choose one of lowercase letters, uppercase letters, 
+      numerics and/or special characters for his/her password type an alert will tell that an error has occured */
       var passwordText = document.querySelector("#password");
-      passwordText.value =
-        "Please choose at least one from lowercase, uppercase, numeric or special character for your password type!";
+      passwordText.value = "";
+      alert(
+        "Error:Please choose at least one of the following as your passowrd types - lowercase characters, uppercase characters, numerics, and/or special characters"
+      );
     }
   } else {
+    /* If the user doesn't choose a valid number between 8 and 128 as his/her passowrd length
+       an alert will tell that the lenght chosen for the password length is invalid */
     var passwordText = document.querySelector("#password");
-    passwordText.value =
-      "Please provide a valid number between 8 and 128 for your password length!";
+    passwordText.value = "";
+    alert(
+      "Error: Please provide a valid number between 8 and 128 for your password length!"
+    );
   }
 }
 
@@ -142,6 +155,8 @@ generateBtn.addEventListener("click", writePassword);
 
 // generatePassword function
 function generatePassword(plen, lcase, ucase, numeric, specialCharacter) {
+  /* joinedArray array will contain the array of elements from which we can choose as password character. 
+ The series of if statements are used to generate this array based on users choice for the type of characters the password contains. */
   var joinedArray = [];
   if (lcase) {
     joinedArray = joinedArray.concat(lowercaseL);
@@ -156,10 +171,13 @@ function generatePassword(plen, lcase, ucase, numeric, specialCharacter) {
     joinedArray = joinedArray.concat(specialChar);
   }
   var joinedArrayLen = joinedArray.length;
+  // pass is an array that contains the actual password characters.
   var pass = [];
+  // The for loop that generates the password characters and populate to pass array
   for (i = 0; i < plen; i++) {
     pass[i] = joinedArray[Math.floor(Math.random() * joinedArrayLen)];
   }
+  // Joins the password characters as a string and return to the caller.
   pass = pass.join("");
   return pass;
 }
