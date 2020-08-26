@@ -136,7 +136,7 @@ function writePassword() {
       var passwordText = document.querySelector("#password");
       passwordText.value = "";
       alert(
-        "Error:Please choose at least one of the following as your passowrd types - lowercase characters, uppercase characters, numerics, and/or special characters"
+        "Error: Please choose at least one of the following as your passowrd types - lowercase characters, uppercase characters, numerics, and/or special characters"
       );
     }
   } else {
@@ -202,7 +202,7 @@ function generatePassword(plen, lcase, ucase, numeric, specialCharacter) {
   }
 }
   
-  // Joins the password characters as a string and return to the caller.
+  // Joins the pass array elements as a string and return to the caller.
   pass = pass.join("");
   return pass;
 }
