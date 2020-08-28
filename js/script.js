@@ -101,7 +101,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   // promt user for password criteria
   var pLen = parseInt(
-    prompt("Please provide valid number btween 8 and 128 for your password lenght")
+    prompt("Please provide valid number btween 8 and 128 for your password length")
   );
   // Checks the user input is a valid password lenght or not
   if (!isNaN(pLen) && pLen >= 8 && pLen <= 128) {
